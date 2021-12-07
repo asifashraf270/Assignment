@@ -35,6 +35,9 @@
             android:layout_height="@dimen/_27ssp"
             android:background="@drawable/search_selector"
             android:focusable="true"
+            android:hint="Search Restaurant"
+
+            android:drawablePadding="@dimen/_2ssp"
             android:paddingStart="@dimen/_5ssp"
             android:drawableLeft="@drawable/search_icon_resize"
             app:layout_constraintEnd_toStartOf="@id/endGuideLine"
