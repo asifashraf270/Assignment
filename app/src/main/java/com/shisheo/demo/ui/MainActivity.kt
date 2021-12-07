@@ -27,6 +27,7 @@ class MainActivity : DaggerAppCompatActivity(), View.OnClickListener {
     lateinit var adapter: RestaurantRecyclerView
     lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         adapter = RestaurantRecyclerView(this)
@@ -62,7 +63,7 @@ class MainActivity : DaggerAppCompatActivity(), View.OnClickListener {
                     adapter.restaurantList.get(position).ratingStar = 5f
                 else
                     adapter.restaurantList.get(position).ratingStar=0f
-                adapter.notifyItemChanged(position)
+                adapter.notifyItemChanged(position,"updateRating")
             }
         }
     }

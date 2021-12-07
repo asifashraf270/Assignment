@@ -18,30 +18,51 @@ import com.shisheo.demo.databinding.RestaurantItemviewBinding
 import com.shisheo.demo.responsentity.restaurantlist.RestaurantResponseModelItem
 import com.shisheo.demo.utils.AppLogger
 
-class RestaurantRecyclerView(val context:Context) : RecyclerView.Adapter<RestaurantRecyclerView.RecyclerViewHolder>() {
-    var restaurantList= mutableListOf<RestaurantResponseModelItem>()
+class RestaurantRecyclerView(val context: Context) :
+    RecyclerView.Adapter<RestaurantRecyclerView.RecyclerViewHolder>() {
+    var restaurantList = mutableListOf<RestaurantResponseModelItem>()
     lateinit var onClickListener: View.OnClickListener
 
     inner class RecyclerViewHolder(val binding: RestaurantItemviewBinding) :
         RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerViewHolder {
-    val binding=DataBindingUtil.inflate<RestaurantItemviewBinding>(LayoutInflater.from(parent.context),
-        R.layout.restaurant_itemview,parent,false)
+        val binding = DataBindingUtil.inflate<RestaurantItemviewBinding>(
+            LayoutInflater.from(parent.context),
+            R.layout.restaurant_itemview, parent, false
+        )
         return RecyclerViewHolder(binding)
     }
-    fun updateList(list:List<RestaurantResponseModelItem>){
+
+    fun updateList(list: List<RestaurantResponseModelItem>) {
         this.restaurantList.clear()
         this.restaurantList.addAll(list)
         notifyDataSetChanged()
     }
 
+    override fun onBindViewHolder(
+        holder: RecyclerViewHolder,
+        position: Int,
+        payloads: MutableList<Any>
+    ) {
+        var restaurant = restaurantList.get(position)
+
+        if (!payloads.isEmpty()) {
+            if (payloads.get(0).equals("updateRating")) {
+                holder.binding.rateBar.rating = restaurant.ratingStar.toFloat()
+
+            }
+        } else
+            super.onBindViewHolder(holder, position, payloads)
+    }
+
     override fun onBindViewHolder(holder: RecyclerViewHolder, position: Int) {
-        var restaurant=restaurantList.get(position)
+        var restaurant = restaurantList.get(position)
         holder.binding.restaurantName.setText(restaurant.name)
         holder.binding.resturantDescription.setText(restaurant.description)
         holder.binding.sale.setText(restaurant.offer)
-        Glide.with(context).load(restaurant.image_url).placeholder(context.resources.getDrawable(R.drawable.resplaceholder))
+        Glide.with(context).load(restaurant.image_url)
+            .placeholder(context.resources.getDrawable(R.drawable.resplaceholder))
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .listener(object : RequestListener<Drawable> {
                 override fun onLoadFailed(
@@ -64,7 +85,7 @@ class RestaurantRecyclerView(val context:Context) : RecyclerView.Adapter<Restaur
                     return false
                 }
             }).into(holder.binding.image)
-        holder.binding.rateBar.rating=restaurant.ratingStar.toFloat()
+        holder.binding.rateBar.rating = restaurant.ratingStar.toFloat()
         holder.binding.rootView.setTag(position)
         holder.binding.rootView.setOnClickListener(onClickListener)
 
