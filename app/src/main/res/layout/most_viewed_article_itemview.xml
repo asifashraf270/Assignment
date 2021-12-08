@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/rootView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_4ssp"
+        android:paddingHorizontal="@dimen/_6ssp">
+
+        <ImageView
+            android:id="@+id/circleImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/circle_selector"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"></ImageView>
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:maxLines="1"
+
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_7ssp"
+            android:layout_marginTop="@dimen/_3ssp"
+            android:ellipsize="end"
+            android:fontFamily="@font/roboto_bold"
+            android:paddingVertical="@dimen/_1ssp"
+            android:text="Holy Grail Restaurant"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_11ssp"
+            app:layout_constraintStart_toEndOf="@id/circleImageView"
+            app:layout_constraintTop_toTopOf="parent"></TextView>
+
+
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_7ssp"
+            android:ellipsize="end"
+            android:fontFamily="@font/roboto_regular"
+            android:maxLines="1"
+            android:paddingVertical="@dimen/_2ssp"
+            android:text="Hello World"
+            android:textColor="@android:color/tab_indicator_text"
+            app:layout_constraintStart_toEndOf="@id/circleImageView"
+            app:layout_constraintTop_toBottomOf="@id/title"></TextView>
+
+        <TextView
+            android:id="@+id/source"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_regular"
+            android:text="Hello World"
+            android:textColor="@android:color/tab_indicator_text"
+            app:layout_constraintStart_toStartOf="@id/description"
+            app:layout_constraintTop_toBottomOf="@id/description"></TextView>
+
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_regular"
+            android:textColor="@android:color/tab_indicator_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/description"></TextView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
